@@ -14,16 +14,22 @@ import contactsReducer from "./contacts/contactsReducer";
 import statusReducer from "./status/statusReducer";
 // import logger from "redux-logger";
 
-const persistConfig = {
+const userBookConfig = {
   key: "userBook",
   storage,
   whitelist: ["token"],
 };
 
+const statusConfig = {
+  key: "status",
+  storage,
+  whitelist: ["remember"],
+};
+
 export const store = configureStore({
   reducer: {
-    userBook: persistReducer(persistConfig, contactsReducer),
-    status: persistReducer(persistConfig, statusReducer),
+    userBook: persistReducer(userBookConfig, contactsReducer),
+    status: persistReducer(statusConfig, statusReducer),
   },
   middleware: [
     ...getDefaultMiddleware({

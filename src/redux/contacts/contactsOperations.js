@@ -21,6 +21,7 @@ import {
   removeContactsSuccess,
   removeContactsError,
 } from "./contactsActions";
+import { statusLogOn } from "../status/statusActions";
 import axios from "axios";
 
 axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com";
@@ -37,6 +38,7 @@ const registrationUser = (user) => (dispatch) => {
     .post("/users/signup", user)
     .then((response) => {
       tokenSet(response.data.token);
+      dispatch(statusLogOn(true));
       dispatch(registrationSuccess({ ...response.data }));
     })
     .catch((error) => dispatch(registrationError(error.message)));
@@ -48,6 +50,7 @@ const loginUser = (user) => (dispatch) => {
     .post("/users/login", user)
     .then((response) => {
       tokenSet(response.data.token);
+      dispatch(statusLogOn(true));
       dispatch(loginSuccess({ ...response.data }));
     })
     .catch((error) => dispatch(loginError(error.message)));
@@ -55,9 +58,11 @@ const loginUser = (user) => (dispatch) => {
 
 const getUser = (token) => (dispatch) => {
   if (!token) {
+    dispatch(statusLogOn(false));
     return;
   }
   tokenSet(token);
+  dispatch(statusLogOn(true));
   dispatch(getUserRequest());
 
   axios
@@ -74,6 +79,7 @@ const logoutUser = () => (dispatch) => {
     .post("/users/logout")
     .then(() => {
       tokenUnset();
+      dispatch(statusLogOn(false));
       dispatch(logoutSuccess());
     })
     .catch((error) => dispatch(logoutError(error.message)));

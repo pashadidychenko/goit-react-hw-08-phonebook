@@ -1,5 +1,4 @@
-const getStatusIson = (state) => state.status.inOn;
-const getStatusExist = (state) => state.status.exist;
+const getStatusLogOn = (state) => state.status.logOn;
 const getStatusRemember = (state) => state.status.remember;
 
-export { getStatusIson, getStatusExist, getStatusRemember };
+export { getStatusLogOn, getStatusRemember };

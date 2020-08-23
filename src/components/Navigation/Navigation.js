@@ -5,9 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import UserMenu from "./UserMenu";
 import routes from "../../routes";
 import { connect } from "react-redux";
-import { getUserInfo } from "../../redux/contacts/contactsSelectors";
+import { getStatusLogOn } from "../../redux/status/statusSelectors";
+import PublicMenu from "./PublicMenu";
 
-function Navigation({ user }) {
+function Navigation({ logOn, props }) {
   return (
     <>
       <Nav
@@ -20,28 +21,14 @@ function Navigation({ user }) {
             Home Page
           </Link>
         </Nav.Item>
-        {!user && (
-          <Nav.Item>
-            <Link to={routes.login} className="nav-link">
-              Login
-            </Link>
-          </Nav.Item>
-        )}
-        {!user && (
-          <Nav.Item>
-            <Link to={routes.register} className="nav-link">
-              Registration
-            </Link>
-          </Nav.Item>
-        )}
-        {user && <UserMenu />}
+        {logOn ? <UserMenu /> : <PublicMenu />}
       </Nav>
     </>
   );
 }
 const mapStateToProps = (state) => {
   return {
-    user: getUserInfo(state),
+    logOn: getStatusLogOn(state),
   };
 };
 

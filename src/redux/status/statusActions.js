@@ -1,7 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const statusInOn = createAction("CHENGE_STATUS_ISON");
-const statusExist = createAction("CHENGE_STATUS_EXIST");
+const statusLogOn = createAction("CHENGE_STATUS_LOGON");
 const statusRemember = createAction("CHENGE_STATUS_REMEMBER");
 
-export { statusInOn, statusExist, statusRemember };
+export { statusLogOn, statusRemember };

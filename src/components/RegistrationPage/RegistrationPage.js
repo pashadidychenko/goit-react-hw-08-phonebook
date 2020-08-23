@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 import { registrationUser } from "../../redux/contacts/contactsOperations";
+import { registrationError } from "../../redux/contacts/contactsActions";
 
 const initialState = {
   firstName: "",
@@ -39,7 +40,8 @@ class RegistrationPage extends Component {
       password: password,
     };
     if (password !== confirmPassword) {
-      return console.log("Pasworn no match");
+      this.props.registrationError("password dismach");
+      return;
     } else {
       this.props.registrationUser(user);
     }
@@ -135,12 +137,9 @@ class RegistrationPage extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
 const mapDispatchToProps = {
   registrationUser,
+  registrationError,
 };
 
 export default connect(null, mapDispatchToProps)(RegistrationPage);

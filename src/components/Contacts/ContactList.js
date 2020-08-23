@@ -9,6 +9,7 @@ import {
   getUserContacts,
   getUserToken,
   getContactsFilter,
+  getUserInfo,
 } from "../../redux/contacts/contactsSelectors";
 import { getContacts } from "../../redux/contacts/contactsOperations";
 
@@ -51,6 +52,7 @@ class ContactList extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: getUserInfo(state),
     contacts: getUserContacts(state),
     token: getUserToken(state),
     filter: getContactsFilter(state),

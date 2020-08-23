@@ -1,20 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {
-  statusInOn,
-  statusExist,
-  statusRemember,
-} from "../status/statusActions";
+import { statusLogOn, statusRemember } from "../status/statusActions";
 
 const statusReducer = createReducer(
-  { inOn: false, exist: false, remember: false },
+  { logOn: false, remember: false },
   {
-    [statusInOn]: (state, action) => ({
+    [statusLogOn]: (state, action) => ({
       ...state,
-      inOn: action.payload,
-    }),
-    [statusExist]: (state, action) => ({
-      ...state,
-      exist: action.payload,
+      logOn: action.payload,
     }),
     [statusRemember]: (state, action) => ({
       ...state,

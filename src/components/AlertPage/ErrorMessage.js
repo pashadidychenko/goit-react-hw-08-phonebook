@@ -1,19 +1,14 @@
-import React, { useState } from "react";
-import { Alert, Button } from "react-bootstrap";
+import React from "react";
+import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function ErrorMessage({ message }) {
-  const [show, setShow] = useState(true);
-
-  if (show) {
-    return (
-      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Samsing wrong!</Alert.Heading>
-        <p>{message}</p>
-      </Alert>
-    );
-  }
-  return <Button onClick={() => setShow(true)}>Show Alert</Button>;
+function ErrorMessage({ error }) {
+  return (
+    <Alert variant="danger">
+      <Alert.Heading>Samsing wrong!</Alert.Heading>
+      <p>{error}</p>
+    </Alert>
+  );
 }
 
 export default ErrorMessage;
